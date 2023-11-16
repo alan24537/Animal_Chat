@@ -1,11 +1,15 @@
 const express = require('express');
 const OpenAI = require('openai');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 const port = 3000;
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+if (!OPENAI_API_KEY) {
+    throw new Error('OPENAI_API_KEY is missing or empty');
+}
 const openai = new OpenAI({
     apiKey: OPENAI_API_KEY,
 });
